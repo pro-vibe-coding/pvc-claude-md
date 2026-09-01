@@ -2,7 +2,7 @@
 
 <p align="center"><img src="assets/pvc-claude-md.jpg" width="360" alt="pvc-claude-md"></p>
 
-![version](https://img.shields.io/badge/version-v0.0.8-blue) ![type](https://img.shields.io/badge/Claude%20Code-skill-7C5CFF) ![license](https://img.shields.io/badge/license-Apache%202.0-green)
+![version](https://img.shields.io/badge/version-v0.0.9-blue) ![type](https://img.shields.io/badge/Claude%20Code-skill-7C5CFF) ![license](https://img.shields.io/badge/license-Apache%202.0-green)
 
 > Audit, optimize, update, and rotate CLAUDE.md files. Pro Vibe Coding's all-in-one CLAUDE.md tool.
 
@@ -180,6 +180,7 @@ Every audit report the skill produces aims to pass on:
 
 ## Changelog
 
+- **v0.0.9 (2026-09-01).** TRADEMARK.md contact and update clauses now point at the Pro Vibe Coding repository on GitHub instead of "this repository", so the policy reads right inside an installed copy.
 - **v0.0.8 (2026-09-01).** README artwork and social preview now use the bar-chart art from the Pro Vibe Coding brand kit.
 - **v0.0.7 (2026-09-01).** Public release under Apache 2.0. The members-only LICENSE is replaced by the Apache License 2.0, a NOTICE file is added, SKILL.md carries an SPDX header, and TRADEMARK.md is rewritten for public use. First Pro Vibe Coding skill published on the public GitHub organization. Also: the personal memory file is now named correctly as `CLAUDE.local.md`, session learnings get a strip-private-detail rule, a STRUCTURE block no longer raises the Pillar 1 score, and the LABS.md header template is literal text.
 - **v0.0.6 (2026-07-24).** Claude 5 era scoring for Pillar 1. Knowledge Compression now rewards non-obvious knowledge only: facts Claude discovers by exploring the repo count against the score and get flagged as removal candidates in the audit. Follows Anthropic's context-engineering guidance for the Claude 5 generation models.

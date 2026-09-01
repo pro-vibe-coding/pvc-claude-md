@@ -43,13 +43,13 @@ The Pro Vibe Coding logo and other brand assets are not included in this reposit
 To request permission for any use not expressly permitted above (commercial use of the logo, naming a related product, official partnership, etc.), contact:
 
 - Website: https://www.provibecoding.app
-- GitHub: open an issue in this repository (Pro Vibe Coding on GitHub: https://github.com/pro-vibe-coding)
+- GitHub: open an issue in the Pro Vibe Coding repository for this project at https://github.com/pro-vibe-coding
 
 Permission requests should describe the proposed use, the audience, the duration, and any commercial context.
 
 ## Updates
 
-Pro Vibe Coding may update this policy from time to time. The current version is always the one in the main branch of this repository.
+Pro Vibe Coding may update this policy from time to time. The current version is always the one published by Pro Vibe Coding at https://github.com/pro-vibe-coding.
 
 ---
 
