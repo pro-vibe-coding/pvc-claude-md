@@ -9,7 +9,7 @@ license: Apache-2.0
 
 # PVC CLAUDE.md
 
-**Version:** v0.0.9
+**Version:** v0.0.10
 
 Audit, optimize, and update CLAUDE.md files using the 4-pillar quality framework. Combines audit, improvement, session-learning capture, and lab notes rotation into one workflow.
 
@@ -27,7 +27,7 @@ Trigger when the user mentions:
 
 ## The 4 Pillars
 
-Score each pillar 0-3 (0 = missing, 1 = minimal, 2 = adequate, 3 = strong).
+Score each pillar 0-3 (0 = missing, 1 = weak, 2 = adequate, 3 = strong).
 
 1. **Knowledge Compression.** Project name, purpose, tech stack, key files, commands, audience. **Claude 5 era rule (v0.0.6):** a strong score means compressed NON-OBVIOUS knowledge: gotchas, constraints, decisions, and patterns Claude cannot infer from the repo itself. Facts Claude discovers by exploring (file listings, obvious folder structure, standard commands a manifest already declares) count against the score, not toward it. When auditing, list any discoverable-fact lines as removal candidates. (Anthropic context-engineering guidance for Claude 5 generation models, 2026-07.)
 2. **User Preferences.** Style rules, conventions, voice, banned vocabulary.
@@ -71,7 +71,7 @@ body...
 1. Insert the new entry at the BOTTOM of the `## Lab notes` section in CLAUDE.md (chronological: oldest first / newest last)
 2. Count entries in the section (grep `^### [0-9]{4}-` in the Lab notes section)
 3. If count > 10, MOVE the topmost (oldest) entry from CLAUDE.md to the BOTTOM of `LABS.md`
-4. Update the count in the section header: `**N older entries archived in [LABS.md](LABS.md).**` (increment N by 1)
+4. Update the count in the section header: ``**N older entries archived in [`LABS.md`](LABS.md).**`` (increment N by 1)
 
 If the count is exactly 10 after adding the new entry, no rotation needed.
 

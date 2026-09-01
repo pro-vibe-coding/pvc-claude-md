@@ -2,7 +2,7 @@
 
 <p align="center"><img src="assets/pvc-claude-md.jpg" width="360" alt="pvc-claude-md"></p>
 
-![version](https://img.shields.io/badge/version-v0.0.9-blue) ![type](https://img.shields.io/badge/Claude%20Code-skill-7C5CFF) ![license](https://img.shields.io/badge/license-Apache%202.0-green)
+![version](https://img.shields.io/badge/version-v0.0.10-blue) ![type](https://img.shields.io/badge/Claude%20Code-skill-7C5CFF) ![license](https://img.shields.io/badge/license-Apache%202.0-green)
 
 > Audit, optimize, update, and rotate CLAUDE.md files. Pro Vibe Coding's all-in-one CLAUDE.md tool.
 
@@ -42,7 +42,7 @@ This skill addresses all three in one pass instead of three separate habits you 
 
 ## The 4 pillars
 
-Each pillar scores 0 to 3: 0 = missing, 1 = minimal, 2 = adequate, 3 = strong.
+Each pillar scores 0 to 3: 0 = missing, 1 = weak, 2 = adequate, 3 = strong.
 
 | Pillar | Covers |
 |---|---|
@@ -146,7 +146,7 @@ It then shows the proposed diffs and asks before writing. It only edits files yo
 `CLAUDE.md` is loaded into every session's context, so a long lab-notes log quietly taxes every prompt. From v0.0.2, the skill keeps the latest 10 entries in `CLAUDE.md` and archives older ones to a sibling `LABS.md`.
 
 - Adding the 11th entry moves the oldest to the bottom of `LABS.md`.
-- The section header tracks the count: `**N older entries archived in [LABS.md](LABS.md).**`
+- The section header tracks the count: ``**N older entries archived in [`LABS.md`](LABS.md).**``
 - When the 11th entry triggers a move, the skill reports it: `### Rotation: oldest entry moves to LABS.md`.
 - `LABS.md` is append-only and frozen. The skill does not rewrite entries already there.
 - Searching history? Grep both files: `grep -n "pattern" CLAUDE.md LABS.md`
@@ -180,6 +180,7 @@ Every audit report the skill produces aims to pass on:
 
 ## Changelog
 
+- **v0.0.10 (2026-09-01).** TRADEMARK.md now names this repository's URL for issues and as the version of record, and states that the artwork in `assets/` is covered by the code license while the names and logo stay trademarks. Also: the score label for 1 is now "weak" in the scale text to match the audit report, and the lab-notes header string is quoted the same way everywhere.
 - **v0.0.9 (2026-09-01).** TRADEMARK.md contact and update clauses now point at the Pro Vibe Coding repository on GitHub instead of "this repository", so the policy reads right inside an installed copy.
 - **v0.0.8 (2026-09-01).** README artwork and social preview now use the bar-chart art from the Pro Vibe Coding brand kit.
 - **v0.0.7 (2026-09-01).** Public release under Apache 2.0. The members-only LICENSE is replaced by the Apache License 2.0, a NOTICE file is added, SKILL.md carries an SPDX header, and TRADEMARK.md is rewritten for public use. First Pro Vibe Coding skill published on the public GitHub organization. Also: the personal memory file is now named correctly as `CLAUDE.local.md`, session learnings get a strip-private-detail rule, a STRUCTURE block no longer raises the Pillar 1 score, and the LABS.md header template is literal text.

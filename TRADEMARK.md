@@ -36,20 +36,20 @@ Forks and derivative works of this project MUST use a different name that does n
 
 ## Logo Files
 
-The Pro Vibe Coding logo and other brand assets are not included in this repository. The code license does not cover them. The trademark rules in this policy apply to them.
+The Pro Vibe Coding logo is not included in this repository. Artwork that is included in this repository (for example under `assets/`) is covered by the code license like the rest of the files. Using that artwork grants no rights to the marks named above, and the trademark rules in this policy still apply to the names and the logo.
 
 ## Requesting Permission
 
 To request permission for any use not expressly permitted above (commercial use of the logo, naming a related product, official partnership, etc.), contact:
 
 - Website: https://www.provibecoding.app
-- GitHub: open an issue in the Pro Vibe Coding repository for this project at https://github.com/pro-vibe-coding
+- GitHub: open an issue at https://github.com/pro-vibe-coding/pvc-claude-md
 
 Permission requests should describe the proposed use, the audience, the duration, and any commercial context.
 
 ## Updates
 
-Pro Vibe Coding may update this policy from time to time. The current version is always the one published by Pro Vibe Coding at https://github.com/pro-vibe-coding.
+Pro Vibe Coding may update this policy from time to time. The current version is always the one published by Pro Vibe Coding at https://github.com/pro-vibe-coding/pvc-claude-md.
 
 ---
 
