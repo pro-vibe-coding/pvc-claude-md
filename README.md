@@ -2,7 +2,7 @@
 
 <p align="center"><img src="assets/pvc-claude-md.jpg" width="360" alt="pvc-claude-md"></p>
 
-![version](https://img.shields.io/badge/version-v0.0.10-blue) ![type](https://img.shields.io/badge/Claude%20Code-skill-7C5CFF) ![license](https://img.shields.io/badge/license-Apache%202.0-green)
+![version](https://img.shields.io/badge/version-v0.0.11-blue) ![type](https://img.shields.io/badge/Claude%20Code-skill-7C5CFF) ![license](https://img.shields.io/badge/license-Apache%202.0-green)
 
 > Audit, optimize, update, and rotate CLAUDE.md files. Pro Vibe Coding's all-in-one CLAUDE.md tool.
 
@@ -54,6 +54,8 @@ Each pillar scores 0 to 3: 0 = missing, 1 = weak, 2 = adequate, 3 = strong.
 ## Install
 
 This is a Claude Code skill. Pick the path that matches where you want it available.
+
+**Downloaded the release zip from GitHub?** It unpacks to a folder named `pvc-claude-md-<version>` (for example `pvc-claude-md-0.0.10`). Rename that folder to `pvc-claude-md` before you place it. Claude Code loads a skill only when the folder name matches the `name` in SKILL.md, so the version suffix stops it from loading. A `git clone` gives you the right folder name already.
 
 ### Project-local (one repo)
 
@@ -180,6 +182,7 @@ Every audit report the skill produces aims to pass on:
 
 ## Changelog
 
+- **v0.0.11 (2026-09-04).** Install note for the GitHub release zip. The zip unpacks to `pvc-claude-md-<version>`, and Claude Code loads a skill only when the folder name matches the skill name, so the Install section now says to rename the folder to `pvc-claude-md` before placing it. First GitHub Release (tag v0.0.10) published the same day.
 - **v0.0.10 (2026-09-01).** TRADEMARK.md now names this repository's URL for issues and as the version of record, and states that the artwork in `assets/` is covered by the code license while the names and logo stay trademarks. Also: the score label for 1 is now "weak" in the scale text to match the audit report, and the lab-notes header string is quoted the same way everywhere.
 - **v0.0.9 (2026-09-01).** TRADEMARK.md contact and update clauses now point at the Pro Vibe Coding repository on GitHub instead of "this repository", so the policy reads right inside an installed copy.
 - **v0.0.8 (2026-09-01).** README artwork and social preview now use the bar-chart art from the Pro Vibe Coding brand kit.
