@@ -9,7 +9,7 @@ license: Apache-2.0
 
 # PVC CLAUDE.md
 
-**Version:** v0.0.11
+**Version:** v0.0.12
 
 Audit, optimize, and update CLAUDE.md files using the 4-pillar quality framework. Combines audit, improvement, session-learning capture, and lab notes rotation into one workflow.
 
