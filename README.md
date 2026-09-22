@@ -1,8 +1,8 @@
 # pvc-claude-md
 
-<p align="center"><img src="assets/pvc-claude-md.jpg" width="360" alt="pvc-claude-md"></p>
+<p align="center"><img src="assets/pvc-claude-md-banner.jpg" alt="pvc-claude-md"></p>
 
-![version](https://img.shields.io/badge/version-v0.0.12-blue) ![type](https://img.shields.io/badge/Claude%20Code-skill-7C5CFF) ![license](https://img.shields.io/badge/license-Apache%202.0-green)
+![version](https://img.shields.io/badge/version-v0.0.13-blue) ![type](https://img.shields.io/badge/Claude%20Code-skill-7C5CFF) ![license](https://img.shields.io/badge/license-Apache%202.0-green)
 
 > Audit, optimize, update, and rotate CLAUDE.md files. Pro Vibe Coding's all-in-one CLAUDE.md tool.
 
@@ -182,6 +182,7 @@ Every audit report the skill produces aims to pass on:
 
 ## Changelog
 
+- **v0.0.13 (2026-09-22).** README shows the cream banner `assets/pvc-claude-md-banner.jpg` full width under the title, the card art on a sheet in its own paper color with the PVC five-bar mark bottom right; the social preview matches it with the mark bottom left. Docs only, no change to what the skill does.
 - **v0.0.12 (2026-09-04).** Corrected the release-zip install note: a project or personal skill takes its command name from the directory name, so an unrenamed folder shows up as `/pvc-claude-md-0.0.11`. The earlier note said it would not load.
 - **v0.0.11 (2026-09-04).** Install note for the GitHub release zip. The zip unpacks to `pvc-claude-md-<version>`, and a project or personal skill takes its command name from the directory name, so the Install section now says to rename the folder to `pvc-claude-md` before placing it. First GitHub Release (tag v0.0.10) published the same day.
 - **v0.0.10 (2026-09-01).** TRADEMARK.md now names this repository's URL for issues and as the version of record, and states that the artwork in `assets/` is covered by the code license while the names and logo stay trademarks. Also: the score label for 1 is now "weak" in the scale text to match the audit report, and the lab-notes header string is quoted the same way everywhere.
