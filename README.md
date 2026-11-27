@@ -2,7 +2,7 @@
 
 <p align="center"><img src="assets/pvc-claude-md-banner.jpg" alt="pvc-claude-md"></p>
 
-![version](https://img.shields.io/badge/version-v0.0.13-blue) ![type](https://img.shields.io/badge/Claude%20Code-skill-7C5CFF) ![license](https://img.shields.io/badge/license-Apache%202.0-green)
+![version](https://img.shields.io/badge/version-v0.0.20-blue) ![type](https://img.shields.io/badge/Claude%20Code-skill-7C5CFF) ![license](https://img.shields.io/badge/license-Apache%202.0-green)
 
 > Audit, optimize, update, and rotate CLAUDE.md files. Pro Vibe Coding's all-in-one CLAUDE.md tool.
 
@@ -27,7 +27,7 @@
 Most CLAUDE.md files drift. Three problems compound over a project's life:
 
 1. **Stale context.** Claude follows guidance that no longer matches the code.
-2. **Missing capability declarations.** Claude does not know which skills or MCP servers are available, so it reinvents work you already automated.
+2. **Missing capability notes.** Claude sees which skills and MCP tools you have, but not which one to prefer for a job or how your project's scripts run, so it reinvents work you already automated.
 3. **No memory of past failures.** The same dead ends get hit again because nothing recorded them.
 
 This skill addresses all three in one pass instead of three separate habits you have to remember.
@@ -38,7 +38,7 @@ This skill addresses all three in one pass instead of three separate habits you 
 - **Suggests targeted diffs** for whatever pillar is missing or weak, kept minimal.
 - **Captures session learnings** as dated lab notes so the next session inherits them.
 - **Rotates lab notes** so `CLAUDE.md` holds the latest 10 while older history archives to `LABS.md` (v0.0.2+).
-- **Syncs the project structure block** when `CLAUDE.md` carries `STRUCTURE:BEGIN`/`STRUCTURE:END` markers: every run compares the block (mermaid folder diagram, folder notes) against the real folder listing and regenerates it on drift (v0.0.4+).
+- **Syncs the project structure block** when `CLAUDE.md` carries `STRUCTURE:BEGIN`/`STRUCTURE:END` markers: every audit compares the block (mermaid folder diagram, folder notes) against the real folder listing and regenerates it on drift (v0.0.4+).
 
 ## The 4 pillars
 
@@ -46,16 +46,18 @@ Each pillar scores 0 to 3: 0 = missing, 1 = weak, 2 = adequate, 3 = strong.
 
 | Pillar | Covers |
 |---|---|
-| Knowledge Compression | Project name, purpose, tech stack, key files, commands, audience |
+| Knowledge Compression | What Claude cannot work out from the repo: the exact test, typecheck and lint commands, gotchas and misleading code, decisions that are not in the repo. Folder listings and other facts Claude finds by exploring count against it |
 | User Preferences | Style rules, conventions, voice, banned vocabulary |
-| Capability Declarations | MCP servers, skills, scripts, integrations |
+| Capability Declarations | Which skill, MCP server or script to prefer for a job and when, how to run your scripts, the outside services the work depends on. A plain list of skills or MCP servers counts against it, since Claude already sees them |
 | Lab Notes | Running log of what worked, what did not, gotchas |
+
+The scoring follows the Claude Code docs. Best practices (Tell Claude what it can't see, and Keep CLAUDE.md short) says to write down only what Claude cannot find by reading the repo, or would otherwise spend time finding again every session. The docs page on CLAUDE.md and memory says `/doctor` cuts content Claude can derive from the codebase and keeps pitfalls, rationale and conventions.
 
 ## Install
 
 This is a Claude Code skill. Pick the path that matches where you want it available.
 
-**From the GitHub release zip:** it unpacks to a folder named `pvc-claude-md-<version>` (for example `pvc-claude-md-0.0.11`). Rename that folder to `pvc-claude-md` before you place it. A project or personal skill takes its command name from the directory name, so an unrenamed folder shows up as `/pvc-claude-md-0.0.11`. A `git clone` gives you the right folder name already.
+**From the GitHub release zip:** it unpacks to a folder named `pvc-claude-md-<version>` (for example `pvc-claude-md-0.0.11`). Rename that folder to `pvc-claude-md` before you place it. The `name` field in SKILL.md sets the command `/pvc-claude-md`, the folder name also invokes the skill, and the Agent Skills standard requires a folder name that matches `name`. A `git clone` gives you the right folder name already.
 
 ### Project-local (one repo)
 
@@ -70,6 +72,7 @@ your-project/
         └── pvc-claude-md/
             ├── SKILL.md
             ├── README.md
+            ├── references/      (structure sync steps)
             ├── assets/          (README artwork)
             ├── REQUIREMENTS.md
             ├── LICENSE
@@ -83,7 +86,7 @@ Copy the `pvc-claude-md/` folder to `~/.claude/skills/` for user-global access a
 
 ### Polyrepo / monorepo
 
-Place it once at `.claude/skills/pvc-claude-md/` in the directory you open Claude Code from. The skill is available whenever you launch Claude Code from that root. Availability depends on where you launch Claude Code, not on which nested package is your current directory.
+Place it once at `.claude/skills/pvc-claude-md/` in the repository root. A session started in any folder of that repository loads it, because Claude Code looks for project skills in every parent folder up to the repository root. A copy in a subfolder's `.claude/skills/` loads once Claude reads or edits a file in that subfolder.
 
 ### As part of a plugin
 
@@ -91,7 +94,7 @@ If you bundle PVC skills as a Claude Code plugin, include `pvc-claude-md/` in th
 
 ### Verify
 
-Start a new Claude Code session (or reload skills), then ask: "What skills are available?" Confirm `pvc-claude-md` appears. Or type a trigger like "audit my CLAUDE.md".
+Claude Code picks up a project or personal skill folder in the running session. Ask "What skills are available?" and confirm `pvc-claude-md` appears, or type `/pvc-claude-md`. If it does not show, run `/reload-skills`. For a plugin install, run `/reload-plugins` after the change.
 
 ## Usage
 
@@ -102,8 +105,10 @@ Trigger it with plain language. Any of these work:
 - "improve my CLAUDE.md"
 - "update CLAUDE.md with what we learned"
 - "is my CLAUDE.md good?"
-- "PVC CLAUDE.md"
+- "my project instructions file is a mess"
 - "rotate lab notes", "compact lab notes", or "archive old lab notes"
+
+It is not the skill for closing a whole work set (pvc-end-set does that), for writing a first CLAUDE.md (`/init` does that), or for auto memory.
 
 ### Example
 
@@ -116,7 +121,7 @@ Agent response:
 ```markdown
 ## CLAUDE.md Audit Report
 **File:** ./CLAUDE.md
-**Token estimate:** ~380 tokens
+**Token estimate:** ~380 tokens, imports included; 36 lines (target under 200)
 **Lab notes:** 0 in CLAUDE.md, no LABS.md exists
 **Structure:** no STRUCTURE markers
 
@@ -127,11 +132,11 @@ Agent response:
 | Capability Declarations | 0 | Missing |
 | Lab Notes               | 0 | Missing |
 
-**Overall: 3/12**
+**Overall:** 3/12
 
 ### Recommendations
-- Add project name, purpose, and key files (Knowledge Compression)
-- Declare available skills and MCP servers (Capability Declarations)
+- Add the exact test and lint commands, and how to run one test file (Knowledge Compression)
+- Say which tool to use for database questions and when to run the seed script (Capability Declarations)
 - Start a Lab notes section so future sessions inherit lessons
 ```
 
@@ -139,8 +144,9 @@ It then shows the proposed diffs and asks before writing. It only edits files yo
 
 ```diff
 ### Update: ./CLAUDE.md
-+ ## Capabilities
-+ - Skills: pvc-claude-md, pvc-readme-writer, pvc-license
++ ## Tools
++ - Database questions: use the postgres MCP server, which points at staging
++ - Run scripts/seed.sh before the integration tests
 ```
 
 ## Lab notes rotation
@@ -155,23 +161,26 @@ It then shows the proposed diffs and asks before writing. It only edits files yo
 
 ## How it compares
 
-Here is how this skill compares with the two common alternatives, so you can tell before installing whether you need it.
+Claude Code comes with tools of its own for project instructions and memory. Here is how this skill compares with them, so you can tell before installing whether you need it.
 
-| | pvc-claude-md | Built-in `/init` | Editing by hand |
+| | What it does with your CLAUDE.md | Scores it | Lab notes |
 |---|---|---|---|
-| Scores quality | Yes, 4 pillars, 0 to 12 | No | No |
-| Proposes targeted diffs | Yes | Generates a file from scratch | You do it |
-| Captures session learnings | Yes, dated lab notes | No | If you remember |
-| Caps context cost | Yes, rotates to LABS.md | No | No |
-| Best for | Keeping an existing CLAUDE.md current | First-time file creation | Small one-off tweaks |
+| pvc-claude-md | Audits an existing file, proposes small diffs, writes only what you approve, captures session learnings | Yes, 4 pillars, 0 to 12 | Dated entries, latest 10 in CLAUDE.md, older ones in LABS.md |
+| `/init` | Writes a first CLAUDE.md, or suggests improvements to the one you have | No | No |
+| `/doctor` | Proposes trims: cuts content Claude can derive from the code, keeps pitfalls, rationale and conventions | No | No |
+| `/doctor prompt-audit` | Reports outdated or conflicting instructions with proposed edits, and changes nothing until you ask (Claude Code v2.1.283 or later) | No | No |
+| Auto memory | Leaves it alone: Claude saves its own notes from your corrections in a separate memory folder | No | No |
+| Editing by hand | Whatever you write | No | If you remember |
+
+The 4-pillar score and the lab-notes rotation are what this skill adds. Those tools work beside it: `/doctor` and `/doctor prompt-audit` for trims and conflicting rules, auto memory for notes Claude keeps for itself.
 
 ## Output rubric
 
 Every audit report the skill produces aims to pass on:
 
-- **Accurate scoring.** Each pillar judged against what the file actually contains.
+- **Accurate scoring.** Each pillar judged against what the file contains.
 - **Minimal diffs.** Additions are brief, no padding, nothing already obvious from the code.
-- **Voice match.** Follows the target project's own style rules, with no em dashes in new content.
+- **Voice match.** Follows the target project's own style rules. A file with none gets plain, concrete instructions a reader can check, simple words, short sentences, and no em dashes in new content.
 - **Rotation integrity.** `CLAUDE.md` never exceeds 10 lab notes, and the archive count stays accurate.
 
 ## Known limitations
@@ -182,6 +191,11 @@ Every audit report the skill produces aims to pass on:
 
 ## Changelog
 
+- **v0.0.20 (2026-11-27).** The same skill text as v0.0.18. Version 0.0.19 added a look at the folders above the working folder, and a last check showed that it could take the user file `~/.claude/CLAUDE.md` for a project file. Those changes were taken back before the public release.
+- **v0.0.18 (2026-11-27).** Fixed what a second check against the Claude Code docs found. A secret such as an API key, a token, a password or a connection string never goes into any instruction file, `CLAUDE.local.md` included: the skill names the environment variable or the secret store instead. Only machine paths and client names may move to `CLAUDE.local.md`. The audit report has a list of removal candidates, and Step 4 shows a removal as a minus line. Discovery also reads the rule files under `.claude/rules/`, so a rule kept there counts for its pillar and gets no duplicate in CLAUDE.md. A checkout under `.claude/worktrees/` is skipped and named in the report.
+- **v0.0.17 (2026-11-27).** The workflow now picks one of three routes from the request. An audit request runs all five steps. A request to capture what a session learned goes to the capture steps, with no scores and no audit report. A request to rotate lab notes runs only the rotation, shows the move as a diff first and writes after approval. Before this version, a capture or a rotation request got a full audit first.
+- **v0.0.16 (2026-11-25).** The lab-notes prompt the skill proposes is now a visible line under the heading, and a rotation keeps that line under the section header. The line also tells every session to leave secrets, machine paths and client names out of a lab note. Claude Code strips block-level HTML comments from a CLAUDE.md when it loads the file, so the old comment did not reach Claude through the loaded file. The audit now reads each CLAUDE.md from disk, offers the visible form where it finds an instruction inside a comment, and leaves the STRUCTURE markers as they are. The report gives the token estimate with imports included, and the line count against the target of under 200 lines. Knowledge Compression rewards what Claude cannot work out from the repo, such as the exact test, typecheck and lint commands, gotchas and decisions. The audit never lists a STRUCTURE block as a removal candidate, and the block never raises that score. Capability Declarations rewards which tool to prefer and when, and a plain list of skills or MCP servers counts against it, since Claude already sees them. A CLAUDE.md with no style rules gets plain, concrete instructions a reader can check, simple words, short sentences, and no em dashes in new content. The description no longer claims project context, project memory or system prompts, and it names its limits: pvc-end-set closes a work set and `/init` writes a first CLAUDE.md. Discovery also finds `AGENTS.md`. With `AGENTS.md` and no CLAUDE.md, the skill says that Claude Code already reads `AGENTS.md`, offers to audit it on the same four pillars, and offers a new CLAUDE.md only with the import of `AGENTS.md` as its first line. When both exist and the CLAUDE.md does not import `AGENTS.md`, it notes that `AGENTS.md` does not load by default and offers the import line. Before a first CLAUDE.md or CLAUDE.local.md in a project that relies on `AGENTS.md`, the skill warns, and offers an `@AGENTS.md` import line for a new CLAUDE.md or the Project instructions setting for a CLAUDE.local.md alone. The structure sync steps moved to `references/structure-sync.md`, read only when a CLAUDE.md holds a `STRUCTURE:BEGIN` marker, and SKILL.md drops the sections that repeat its description and rules. The steps say to use the Glob and Grep tools where Claude has them, the default on Windows, and to search one file name at a time with Glob, which returns at most 100 files. The lab-notes header no longer writes a skill version into your CLAUDE.md, and the version moved into the frontmatter. The README compares the skill with `/init`, `/doctor`, `/doctor prompt-audit` and auto memory, says a new skill folder shows up in the running session, and says the `name` field sets the command.
+- **v0.0.15 (2026-11-24).** SKILL.md drops its `allowed-tools` line, which let the skill write files and run shell commands with no prompt. Claude Code now asks first, by the rules of your own settings. Before the first write to `CLAUDE.local.md`, the skill checks that git ignores the file. When git does not, it adds the file to `.gitignore`, and it keeps private detail out of the file when git tracks it already. The lab-notes count now uses `grep -Ec`: plain grep read the pattern wrong and counted zero. A rotation moves every entry past the latest 10 and raises the header count by the number moved. Discovery finds every CLAUDE.md, LABS.md and CLAUDE.local.md with no cap of 20, and skips `node_modules` and `.git`. The structure listing tells files from folders and handles a root with no folders. `LABS.md` sits in the same folder as its CLAUDE.md, also when that CLAUDE.md is in a subfolder.
 - **v0.0.13 (2026-09-22).** README shows the cream banner `assets/pvc-claude-md-banner.jpg` full width under the title, the card art on a sheet in its own paper color with the PVC five-bar mark bottom right; the social preview matches it with the mark bottom left. Docs only, no change to what the skill does.
 - **v0.0.12 (2026-09-04).** Corrected the release-zip install note: a project or personal skill takes its command name from the directory name, so an unrenamed folder shows up as `/pvc-claude-md-0.0.11`. The earlier note said it would not load.
 - **v0.0.11 (2026-09-04).** Install note for the GitHub release zip. The zip unpacks to `pvc-claude-md-<version>`, and a project or personal skill takes its command name from the directory name, so the Install section now says to rename the folder to `pvc-claude-md` before placing it. First GitHub Release (tag v0.0.10) published the same day.
